@@ -41,3 +41,22 @@ class Waste:
         # Call notification method when waste is added
         self.notification()
 
+    def notification(self):
+        # Fetch companies from the Company table
+        company_data = requests.get(base_url + 'Company?limit_page_length=100&fields=["*"]', headers=headers).json()
+        
+        recipients = []
+        # Loop through the company table to find matching category
+        for company in company_data["data"]:
+            if company["category"].lower() == self.category.lower():  # Case-insensitive comparison
+                recipients.append(company["email"])
+
+        # If no matching companies found, notify the user
+        if not recipients:
+            print("No matching companies found for the given category.")
+
+        # Send notification to the recipient
+        for email in recipients:
+            subject = "Waste Collection Notification"
+            message = f"A new waste item has been logged:\n- Name: {self.waste}\n- Category: {self.category}\n- Quantity(kg): {self.quantity}\n- Location: {self.area}\n- Date: {self.date}"
+            self.send_email(email, subject, message)
