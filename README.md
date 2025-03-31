@@ -14,7 +14,7 @@ Gmail account with SMTP enabled and an app password.
 
 Installation
 Clone the repository:
-git clone https://github.com/yourusername/ecotracker.git
+git clone https://github.com/Frankish0014/Developers-Hub.git
 cd ecotracker
 Install dependencies:
 pip install requests
