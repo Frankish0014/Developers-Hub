@@ -83,6 +83,7 @@ class Waste:
             print(f"\nNotification successfully sent")
         except Exception:
             print(f"Failed to send email")
+
     def waste_history(self):
         # Prompt user to input location to filter waste records
         location_input = input("Enter the location to filter waste records: ")
