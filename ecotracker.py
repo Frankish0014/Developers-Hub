@@ -98,3 +98,23 @@ class Waste:
                     if key not in {"name", "owner", "creation", "modified", "modified_by", "docstatus", "idx"}: # Exclude unnecessary keys
                         print(f"{key}: {value}")
                 print("-" * 30)  # Separator for clarity
+
+
+# Main menu
+waste = Waste()
+while True:
+    print("\n1. Add Waste")
+    print("2. View Waste History")
+    print("3. Exit")
+
+    choice = input("Please choose an option: ")
+
+    if choice == "1":
+        waste.add_waste()  # Add waste data and send notifications if applicable
+    elif choice == "2":
+        waste.waste_history()  # View waste history filtered by location
+    elif choice == "3":
+        print("Exiting the program.")
+        break  # Exit the loop and the program
+    else:
+        print("Invalid option. Please try again.")
