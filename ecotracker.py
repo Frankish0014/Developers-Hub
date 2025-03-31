@@ -60,3 +60,26 @@ class Waste:
             subject = "Waste Collection Notification"
             message = f"A new waste item has been logged:\n- Name: {self.waste}\n- Category: {self.category}\n- Quantity(kg): {self.quantity}\n- Location: {self.area}\n- Date: {self.date}"
             self.send_email(email, subject, message)
+
+    def send_email(self, to, subject, message):
+        smtp_server = "smtp.gmail.com"  # Gmail SMTP server
+        smtp_port = 587  # port
+        smtp_user = "onuigbokelvin2003@gmail.com"  # Gmail address
+        smtp_password = "huis fvly yrsz coii"  # Use app password or Gmail password
+
+        # Create email
+        msg = MIMEMultipart()
+        msg["From"] = smtp_user
+        msg["To"] = to
+        msg["Subject"] = subject
+        msg.attach(MIMEText(message, "plain"))
+
+        try:
+            # Connect and send email
+            with smtplib.SMTP(smtp_server, smtp_port) as server:
+                server.starttls()
+                server.login(smtp_user, smtp_password)
+                server.send_message(msg)
+            print(f"\nNotification successfully sent")
+        except Exception:
+            print(f"Failed to send email")
