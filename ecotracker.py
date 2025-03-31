@@ -83,3 +83,17 @@ class Waste:
             print(f"\nNotification successfully sent")
         except Exception:
             print(f"Failed to send email")
+    def waste_history(self):
+        # Prompt user to input location to filter waste records
+        location_input = input("Enter the location to filter waste records: ")
+
+        # Get waste data from the waste table
+        waste_data = requests.get(base_url + 'Waste?limit_page_length=100&fields=["*"]', headers=headers).json()
+
+        # Filter waste records that match the input location (case-insensitive)
+        for entry in waste_data["data"]:
+            if entry["location"].lower() == location_input.lower():
+                for key, value in entry.items():
+                    if key not in {"name", "owner", "creation", "modified", "modified_by", "docstatus", "idx"}: # Exclude unnecessary keys
+                        print(f"{key}: {value}")
+                print("-" * 30)  # Separator for clarity
