@@ -31,3 +31,13 @@ class Waste:
             "date_and_time": self.date
         }
 
+        # Send data to the API
+        response = requests.post(base_url + 'Waste', headers=headers, json=new_waste)
+        if response.status_code == 200:
+            print("\nSuccessfully added waste data.")
+        else:
+            print("\nFailed to add waste data. Please check your input.")
+
+        # Call notification method when waste is added
+        self.notification()
+
