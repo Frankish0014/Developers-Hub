@@ -64,8 +64,8 @@ class Waste:
     def send_email(self, to, subject, message):
         smtp_server = "smtp.gmail.com"  # Gmail SMTP server
         smtp_port = 587  # port
-        smtp_user = "onuigbokelvin2003@gmail.com"  # Gmail address
-        smtp_password = "huis fvly yrsz coii"  # Use app password or Gmail password
+        smtp_user = # Removed for security purposes
+        smtp_password = # Password removed for security purposes
 
         # Create email
         msg = MIMEMultipart()
